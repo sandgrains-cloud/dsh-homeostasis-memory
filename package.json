@@ -1,0 +1,68 @@
+{
+  "name": "dsh-homeostasis-memory",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "sandgrains-cloud",
+  "description": "hermes-style memory system for the DeepSeek Harness: persona (SOUL.md), hot memory (USER.md / MEMORY.md), long-term memory spaces that archived entries move into, skills, session recall, a closing/passive review with the main model or a per-turn synchronous review with another model, and a Memory settings page.",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.1-rc.3"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "deepseek-harness-plugin",
+    "dsh-plugin",
+    "agent-memory",
+    "long-term-memory",
+    "persistent-memory",
+    "cross-session-memory",
+    "memory-system",
+    "context-management",
+    "local-first",
+    "mnemon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandgrains-cloud/dsh-homeostasis-memory.git"
+  },
+  "homepage": "https://github.com/sandgrains-cloud/dsh-homeostasis-memory#readme",
+  "bugs": {
+    "url": "https://github.com/sandgrains-cloud/dsh-homeostasis-memory/issues"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "vendor",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "README.md",
+    "README-CN.md",
+    "README-EN.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  }
+}

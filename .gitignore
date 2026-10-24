@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Local scratch work (probes, throwaway test dirs)
+temp/
+temp-*/
+*.tmp
+*.log
+
+# Packaged archives kept next to the source
+*.rar
+*.zip
+*.7z
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local environment / secrets
+.env
+.env.*
+*.local

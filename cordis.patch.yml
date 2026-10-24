@@ -1,0 +1,63 @@
+# DSH memory system — inserts one Host plugin row.
+#
+# Every value below is the documented default from the PRD (FR-7). Edit this
+# block in the profile's own cordis.patch.yml to change behaviour; a profile
+# patch that targets `id: memory` replaces the whole `config` object.
+- insert:
+    - id: memory
+      name: dsh-homeostasis-memory
+      config:
+        persona:
+          path: ''                 # empty = $DSH_HOME/SOUL.md
+          maxBytes: 4096
+          requireApproval: true
+          seedScaffold: true
+        hotMemory:
+          userLimitChars: 1375   # USER.md ceiling; MEMORY.md has no character limit and uses scores
+          writeApproval: false
+        skills:
+          root: ''                 # empty = $DSH_HOME/skills
+          descriptionMaxChars: 200
+          bodyMaxChars: 10000
+          dedupeThreshold: 0.5
+        sessionGrep:
+          maxSessions: 40
+          maxHits: 10
+          snippetChars: 400
+          timeoutMs: 3000
+        review:
+          enabled: true            # master switch for every review (page-owned)
+          passive: true            # passive idle rule, standard strategy only (page-owned)
+          intervalTurns: 10        # passive review: user turns since the last review
+          idleMinutes: 5           # passive review: idle minutes before the review runs
+          maxPerSession: 50
+          maxInputChars: 60000     # standard strategy: input warning threshold
+          maxTokens: 8192
+          logPath: ''              # empty = $DSH_HOME/memory/review-log.jsonl
+          logMaxEntries: 5         # keep only the newest N review records
+          statePath: ''            # empty = $DSH_HOME/memory/review-state.json (synchronous reviewers)
+          model:
+            mode: inherit          # inherit = standard strategy; fixed = synchronous review
+            provider: ''
+            model: ''
+        protocol:
+          enabled: true
+        longTerm:
+          enabled: true            # false = dead entries are dropped at zero, as before
+          recall: true             # page-owned; off withdraws memory_recall / memory_related
+          targetSpace: cold-archive
+          createTargetSpace: true  # create the target space when it does not exist
+          cliPath: ''              # empty = the bundled vendor/mnemon, then PATH
+          dataDir: ''              # empty = $DSH_HOME/memory/spaces (never dsh-mnemon's root)
+          timeoutMs: 15000
+          entryMaxChars: 8000      # the Mnemon write path refuses longer entries
+          logMaxEntries: 3         # newest archive records kept, in the file and on the page
+          recallQuality:
+            limit: 6
+            lowScoreThreshold: 0.25
+            highScoreThreshold: 0.6
+            candidateMultiplier: 3
+            maxMediumResults: 4
+            maxUnknownResults: 2
+        ui:
+          locale: auto             # auto | zh | en — the settings page language

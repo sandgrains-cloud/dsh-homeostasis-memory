@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Memory System",
+    "description": "Persona (SOUL.md), hot memory (USER.md / MEMORY.md), long-term memory that archived entries move into when a review scores them down (with recall and graph traversal), skill authoring, same-workspace session recall, a closing and passive review with the main model or a per-turn synchronous review with another model, and a Memory settings page."
+  }
+}
